@@ -19,7 +19,7 @@ void cls();
 
 // System Functions
 void wes();
-void process();
+int  process();
 void strsp();
 void nli();
 void scall();
@@ -35,7 +35,7 @@ int main vop {
 }
 
 // Command Processor
-void process() {
+int process() {
   print("client@repl.it> ");
   int arg1;
   int arg2;
@@ -49,10 +49,10 @@ void process() {
       print("How to use:\nThis command processor can only accept integers as input. You have to wrtie \"0\" if you want to specify no argument.\nA possible example of this is if you want to get command help. The standard help command is set at 1 - - - (- will be used to reperesent 0 as it is easier to understand.\nThe command list is available at 1 1 - -\n The command processor takes 4 args as of now an \"arg\" means command argument.");
     } else if ((arg2 == 2) and (arg3 == 0) and arg4 ==0) {
       printf("Hello World Program in C\n#include <stdio.h>\nint main(void) {\n\tprintf(\"Hello World!\")\n}");
-    } if (arg2 == 1) {
+    } if ((arg2 == 1) and (arg3 == 0) and (arg4 == 0)) {
       printf("ReplIt Shell Commands:\nNumber Spammer: 2 1 1 2\nClear Screen: 2 1 4 -\n");
     } else if ((arg2 == 1) and (arg3 == 1) and (arg4 == 0)){
-      sycal();
+      scall();
     }
   } else if (arg1 == 2) {
     if (arg2 == 1) {
@@ -67,6 +67,9 @@ void process() {
       } else if (arg3 == 4) {
         cls();
       } else if (arg3 == 5) {
+        if(arg4 == 5) {
+          // Undecided Command
+        }
       }
 
     }
@@ -101,6 +104,7 @@ void process() {
   } else if (arg1 == 13) {
     
   }
+  return 0;
 }
 
 // Functions
@@ -135,5 +139,6 @@ void cls() {
 void scall() {
   printf("Enter Function to escalate to System: ");
   char sys[70];
-  
+  scanf(" %[^\n]", sys);
+  system(sys);
 }
