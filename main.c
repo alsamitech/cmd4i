@@ -25,7 +25,7 @@ void nli();
 void scall();
 
 int main vop {
-  printf("ReplIt\n");
+  printf("4INTCMD\n");
   printf("-----------------\n-----------------\n");
   print("Type (1 0 0 0) for help or if you don't know what to do.\n");
   while (areSwitch == 1){
@@ -36,7 +36,7 @@ int main vop {
 
 // Command Processor
 int process() {
-  print("client@repl.it> ");
+  print("client@system> ");
   int arg1;
   int arg2;
   int arg3;
