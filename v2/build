@@ -1,0 +1,9 @@
+#!/bin/sh
+
+CC=gcc
+CFLAGS="-Wall -Os"
+SRC=main.c
+LFLAGS=
+
+echo $CC $SRC $CFLAGS $LFLAGS
+$CC $SRC $CFLAGS
