@@ -1,0 +1,10 @@
+cmd4i - the 4 integer command line
+
+v1: I don't really think too much of this version, it was just the original test.
+v2: This is the version that should be used
+v2n: This is v2 but reads and processess from files
+
+v2 Commands (some backwards compatible to v1):
+	1 0 0 0 - help command (loads from docs/Help.txt)
+	1 1 1 1 - cmd4i exit command (Raw level, cannot be removed via config)
+	2020 <arg1> <arg2> <arg3> - gives out the binary ouput of all 3 arguments 

@@ -8,6 +8,8 @@
 
 int args[4];
 
+char* to_interpret;
+
 int8_t Setup(int argc, char** argv);
 char* ytb(int n);
 int8_t Work();
@@ -21,21 +23,27 @@ int8_t color_opt;
 int main(int argc, char** argv){
 	signal(SIGINT, interrupt_handler);
 	Setup(argc, argv);
-	Work();
+	char* token=strtok(to_interpret, "\n");
+	Work(token);
+	while(token!=NULL){
+		token=strtok(NULL, "\n");
+		Work(token);
+	}
 	Finish();
 
 	return 0;
 }
 
 int8_t Setup(int argc, char** argv){
-	for(int i=0;i<argc;i++){
+	to_interpret=read_from_file(argv[1]);
+	/*for(int i=0;i<argc;i++){
 		if(strcmp(argv[i],"-b")==0){
 			printf("\033[1;37");
 			color_opt=0x01;
 		} if(strcmp(argv[i],"-v")==0){
-			printf("\033[1;34cmd4i: The 4 Ineger command  line\033[0m\nDeveloped At Alsami Technologies (2020)\n");
+			printf("\033[1;34cmd4i: The 4 Ineger command line\033[0m\nDeveloped At Alsami Technologies (2020)\n");
 		}
-	}
+	}*/
 
 	return 0;
 }
@@ -51,10 +59,9 @@ int8_t Finish(){
 }
 
 
-int8_t Work(){
-	for ever{
-		printf("\033[1;31m> \033[0m");
-		if(scanf("%d %d %d %d", &args[0], &args[1], &args[2], &args[3])==EOF){
+int8_t Work(char* parseme){
+		//printf("\033[1;31m> \033[0m");
+		if(sscanf(parseme,"%d %d %d %d", &args[0], &args[1], &args[2], &args[3])==EOF){
 			fprintf(stderr,"\033[1;31mscanf() error\033[0m\n");
 			return 1;
 		} else{
@@ -62,7 +69,7 @@ int8_t Work(){
 			// parse here
 			if(args[0]==1&&args[1]==0&&args[2]==0&&args[3]==0){
 				printf("%s\n",read_from_file("docs/Help.txt"));
-				continue;
+				//continue;
 
 			} else if(args[0]==1&&args[1]==0&&args[2]==69){
 				for(int i=args[3];i>0;i--){
@@ -73,7 +80,7 @@ int8_t Work(){
 					
 				}
 				puts("\n");
-				continue;
+				//continue;
 			
 			}else if(args[0]==2020){
 				printf("1:[%p] >> %s\n", &args[1], ytb(args[1]));
@@ -82,7 +89,8 @@ int8_t Work(){
 				
 			
 			} else if(args[0]==1&&args[1]==1&&args[2]==1&&args[3]==1){
-				break;
+				Finish();
+				exit(1);
 			
 			}else{
 				printf("\033[1;31mCommad (%d) (%d) (%d) (%d) does not exist\033[0m\n",args[0], args[1], args[2], args[3]);
@@ -90,9 +98,6 @@ int8_t Work(){
 		}
 		// trash the memory here
 		args[0]==0;args[1]==0;args[2]==0;args[3]==0;
-		
-	}
-
 
 
 
